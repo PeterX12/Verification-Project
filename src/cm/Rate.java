@@ -89,6 +89,11 @@ public class Rate {
         return isValid;
     }
     public BigDecimal calculate(Period periodStay) {
+
+        if(periodStay == null){
+            throw new IllegalArgumentException();
+        }
+
         int normalRateHours = periodStay.occurences(normal);
         int reducedRateHours = periodStay.occurences(reduced);
         return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
