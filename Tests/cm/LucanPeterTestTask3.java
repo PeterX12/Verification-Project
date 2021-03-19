@@ -793,4 +793,67 @@ public class LucanPeterTestTask3 {
         Period stay = new Period(4,8);
         assertEquals(new BigDecimal(7.375), rate.calculate(stay));
     }
+
+    //test 10
+    //kind == STAFF
+    //Cost == 16
+    //Input 16
+    //Expected Result: 16
+    @Test
+    public void taskThreeTest10() {
+        CarParkKind kind = CarParkKind.STAFF;
+        BigDecimal normalRate = new BigDecimal(2);
+        BigDecimal reducedRate = new BigDecimal(1);
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+
+        normalPeriods.add(new Period(0, 8));
+        reducedPeriods.add(new Period(8, 24));
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
+        Period stay = new Period(0,8);
+        assertEquals(new BigDecimal(16), rate.calculate(stay));
+    }
+
+    //test 11
+    //kind == STAFF
+    //Cost < 16
+    //Input 8
+    //Expected Result: 8
+    @Test
+    public void taskThreeTest11() {
+        CarParkKind kind = CarParkKind.STAFF;
+        BigDecimal normalRate = new BigDecimal(2);
+        BigDecimal reducedRate = new BigDecimal(1);
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+
+        normalPeriods.add(new Period(0, 8));
+        reducedPeriods.add(new Period(8, 24));
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
+        Period stay = new Period(1,5);
+        assertEquals(new BigDecimal(8), rate.calculate(stay));
+    }
+
+    //test 12
+    //kind == STAFF
+    //Cost > 16
+    //Input 20
+    //Expected Result: 16
+    @Test
+    public void taskThreeTest12() {
+        CarParkKind kind = CarParkKind.STAFF;
+        BigDecimal normalRate = new BigDecimal(2);
+        BigDecimal reducedRate = new BigDecimal(1);
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+
+        normalPeriods.add(new Period(0, 8));
+        reducedPeriods.add(new Period(8, 24));
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
+        Period stay = new Period(0,12);
+        assertEquals(new BigDecimal(16), rate.calculate(stay));
+    }
 }
