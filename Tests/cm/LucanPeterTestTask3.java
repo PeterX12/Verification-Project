@@ -610,5 +610,22 @@ public class LucanPeterTestTask3 {
 //---------------Task3 Tests Begin Here---------------------------------------------------------------------------------------------------------------
 
     //test 1
+    //kind == VISITOR
+    //Period < 8.00
+    //Expected Result: free
+    @Test
+    public void taskThreeTest1() {
+        CarParkKind kind = CarParkKind.VISITOR;
+        BigDecimal normalRate = new BigDecimal(5);
+        BigDecimal reducedRate = new BigDecimal(2);
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
 
+        normalPeriods.add(new Period(0, 8));
+        reducedPeriods.add(new Period(9, 18));
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
+        Period stay = new Period(1,3);
+        assertEquals(new BigDecimal(0), rate.calculate(stay));
+    }
 }
