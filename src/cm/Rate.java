@@ -113,6 +113,10 @@ public class Rate {
                 rateCalculator = new StudentCalculator();
                 price = rateCalculator.calculate(price);
                 break;
+            case STAFF:
+                rateCalculator = new StaffCalculator();
+                price = rateCalculator.calculate(price);
+                break;
         }
 
         return price;
