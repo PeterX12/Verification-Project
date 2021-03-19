@@ -611,18 +611,18 @@ public class LucanPeterTestTask3 {
 
     //test 1
     //kind == VISITOR
-    //Period < 8.00
+    //Cost < 8.00
     //Expected Result: free
     @Test
     public void taskThreeTest1() {
         CarParkKind kind = CarParkKind.VISITOR;
-        BigDecimal normalRate = new BigDecimal(5);
-        BigDecimal reducedRate = new BigDecimal(2);
+        BigDecimal normalRate = new BigDecimal(2);
+        BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<>();
         ArrayList<Period> reducedPeriods = new ArrayList<>();
 
         normalPeriods.add(new Period(0, 8));
-        reducedPeriods.add(new Period(9, 18));
+        reducedPeriods.add(new Period(8, 24));
 
         Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
         Period stay = new Period(1,3);
@@ -631,41 +631,41 @@ public class LucanPeterTestTask3 {
 
     //test 2
     //kind == VISITOR
-    //Period == 8.00
+    //Cost == 8.00
     //Expected Result: free
     @Test
     public void taskThreeTest2() {
         CarParkKind kind = CarParkKind.VISITOR;
-        BigDecimal normalRate = new BigDecimal(5);
-        BigDecimal reducedRate = new BigDecimal(2);
+        BigDecimal normalRate = new BigDecimal(2);
+        BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<>();
         ArrayList<Period> reducedPeriods = new ArrayList<>();
 
         normalPeriods.add(new Period(0, 8));
-        reducedPeriods.add(new Period(9, 18));
+        reducedPeriods.add(new Period(8, 24));
 
         Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
-        Period stay = new Period(0,7);
+        Period stay = new Period(0,4);
         assertEquals(new BigDecimal(0), rate.calculate(stay));
     }
 
     //test 3
     //kind == VISITOR
-    //Period > 8.00
-    //Expected Result:
+    //Cost > 8.00
+    //Expected Result: return 50% of amount greater than 8. Expected: 3.50
     @Test
     public void taskThreeTest3() {
         CarParkKind kind = CarParkKind.VISITOR;
-        BigDecimal normalRate = new BigDecimal(5);
-        BigDecimal reducedRate = new BigDecimal(2);
+        BigDecimal normalRate = new BigDecimal(2);
+        BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<>();
         ArrayList<Period> reducedPeriods = new ArrayList<>();
 
         normalPeriods.add(new Period(0, 8));
-        reducedPeriods.add(new Period(9, 18));
+        reducedPeriods.add(new Period(8, 24));
 
         Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
-        Period stay = new Period(0,15);
+        Period stay = new Period(2,11);
         assertEquals(new BigDecimal(3.50), rate.calculate(stay));
     }
 }
