@@ -648,4 +648,24 @@ public class LucanPeterTestTask3 {
         Period stay = new Period(0,7);
         assertEquals(new BigDecimal(0), rate.calculate(stay));
     }
+
+    //test 3
+    //kind == VISITOR
+    //Period > 8.00
+    //Expected Result:
+    @Test
+    public void taskThreeTest3() {
+        CarParkKind kind = CarParkKind.VISITOR;
+        BigDecimal normalRate = new BigDecimal(5);
+        BigDecimal reducedRate = new BigDecimal(2);
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+
+        normalPeriods.add(new Period(0, 8));
+        reducedPeriods.add(new Period(9, 18));
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
+        Period stay = new Period(0,15);
+        assertEquals(new BigDecimal(3.50), rate.calculate(stay));
+    }
 }
