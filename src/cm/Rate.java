@@ -105,6 +105,10 @@ public class Rate {
                 rateCalculator = new VisitorCalculator();
                 price = rateCalculator.calculate(price);
                 break;
+            case MANAGEMENT:
+                rateCalculator = new ManagementCalculator();
+                price = rateCalculator.calculate(price);
+                break;
         }
 
         return price;
