@@ -94,10 +94,20 @@ public class Rate {
             throw new IllegalArgumentException();
         }
 
+        RateCalculator rateCalculator;
+
         int normalRateHours = periodStay.occurences(normal);
         int reducedRateHours = periodStay.occurences(reduced);
-        return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
-                this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
+        BigDecimal price = this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours)).add(this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
+
+        switch (this.kind){
+            case VISITOR:
+                rateCalculator = new VisitorCalculator();
+                price = rateCalculator.calculate(price);
+                break;
+        }
+
+        return price;
     }
 
 }
