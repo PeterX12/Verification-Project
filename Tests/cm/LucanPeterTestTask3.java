@@ -776,13 +776,13 @@ public class LucanPeterTestTask3 {
     //test 9
     //kind == STUDENT
     //Cost > 5.50
-    //Input 7.50
-    //Expected Result: Apply 25% discount after 5.50. Return 7
+    //Input 8
+    //Expected Result: Apply 25% discount after 5.50. Return 7.375
     @Test
     public void taskThreeTest9() {
         CarParkKind kind = CarParkKind.STUDENT;
         BigDecimal normalRate = new BigDecimal(2);
-        BigDecimal reducedRate = new BigDecimal(0.5);
+        BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<>();
         ArrayList<Period> reducedPeriods = new ArrayList<>();
 
@@ -790,7 +790,7 @@ public class LucanPeterTestTask3 {
         reducedPeriods.add(new Period(8, 24));
 
         Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
-        Period stay = new Period(5,11);
-        assertEquals(new BigDecimal(5.00), rate.calculate(stay));
+        Period stay = new Period(4,8);
+        assertEquals(new BigDecimal(7.375), rate.calculate(stay));
     }
 }
